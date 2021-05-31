@@ -21,13 +21,13 @@ spring:
           predicates:
             - Path=/football/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
         - id: comment-service
           uri: lb://comment
           predicates:
             - Path=/comment/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
     loadbalancer:
       ribbon:
         enabled: false
