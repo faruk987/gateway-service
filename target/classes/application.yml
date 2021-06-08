@@ -12,22 +12,28 @@ spring:
               - POST
               - PUT
               - DELETE
-      discovery:
-        locator:
-          enabled: true
       routes:
         - id: football-service
-          uri: lb://football
+          uri: http://localhost:8082/
           predicates:
-            - Path=/football/**
+            - Path=/football/**/**
           filters:
             - StripPrefix=2
         - id: comment-service
-          uri: lb://comment
+          uri: http://localhost:8081
           predicates:
             - Path=/comment/**
           filters:
             - StripPrefix=2
-    loadbalancer:
-      ribbon:
-        enabled: false
+        - id: user-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+        - id: gamble-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/gamble/**
+          filters:
+            - StripPrefix=1
