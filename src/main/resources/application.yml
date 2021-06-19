@@ -14,25 +14,25 @@ spring:
               - DELETE
       routes:
         - id: football-service
-          uri: http://localhost:8082/
+          uri: lb://football
           predicates:
-            - Path=/api/football/**
+            - Path=/football/**
           filters:
             - StripPrefix=2
         - id: comment-service
-          uri: http://localhost:8081
+          uri: lb://comment
           predicates:
             - Path=/comment/**
           filters:
             - StripPrefix=2
         - id: user-service
-          uri: http://localhost:8083
+          uri: lb://user
           predicates:
-            - Path=/auth/**
+            - Path=/user/**
           filters:
             - StripPrefix=1
         - id: gamble-service
-          uri: http://localhost:8084
+          uri: lb://gamble
           predicates:
             - Path=/gamble/**
           filters:
